@@ -8,3 +8,6 @@ def login(request):
 
 def upload(request):
     return render(request, 'guestbook/upload.html')
+
+def about(request):
+    return render(request, 'guestbook/about.html')

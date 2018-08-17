@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Image(models.Model):
-    filename = models.CharField(max_length=30)
+    photo     = models.ImageField(blank=True, null=True)
     img_title = models.CharField(max_length=30, default='')
-    img_desc = models.CharField(max_length=100, null=True)
-    img_tags = models.CharField(max_length=100, null=True)
+    img_desc = models.CharField(max_length=100, default='', null=True)
+    img_tags = models.CharField(max_length=100, default='', null=True)
     location = models.CharField(max_length=200, default='')
 
 class EXIF_data(models.Model):

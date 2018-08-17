@@ -4,11 +4,34 @@
 <head>
 	<title>Upload P</title>
 	<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="{% static 'guestbook/css/vendor/bootstrap/css/bootstrap.css' %}">
 </head>
+
 <body>
+<style>
+	button{
+		width:50px;
+		height:20px;
+		padding:5px;
+	}
+</style>
 
-Upload
 
+<h3>Upload Image</h3>
+
+<div class="container">
+	<p>
+	<input type="file" name="ser_image" >
+	<input type="submit" name="Upload">
+	</p>
+</div>
+
+<div class="social_upload">
+	<h3>Move to Media</h3>
+	<button type="button" name="insta"></button>
+	<button type="button" name="fb"></button>
+	<button type="button" name="twitter"></button>
+</div>
 
 
 </body>

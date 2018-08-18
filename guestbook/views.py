@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from .forms import UploadImage
+from .forms import UploadImageForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 
@@ -18,21 +18,21 @@ def upload(request):
 def about(request):
     return render(request, 'guestbook/about.html')
 
-# def upload_image(request):
-#     if request.method == 'POST':
-#         form = UploadImage(request.POST, request.files)
-#         if form.is_valid():
-#             handle_upload(request.FILES['file'])
-#             return HttpResponseRedirect('/success/url')
-#         else:
-#             form = UploadImage()
-#         return render(request, 'upload.html', {form: form})
+# def img_upload(request):
+#     if request.method == 'POST' and request.FILES['myfile']:
+#         myfile = request.FILES['myfile']
+#         fs = FileSystemStorage()
+#         filename = fs.save(myfile.name, myfile)
+#         uploaded_file_url = fs.url(filename)
+#         return render(request, 'guestbook/upload_image.html', {'uploaded_file_url' : uploaded_file_url})
+#     return render(request, 'guestbook/upload_image.html')
 
 def img_upload(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs = FileSystemStorage()
-        filename = fs.save(myfile.name, myfile)
-        uploaded_file_url = fs.url(filename)
-        return render(request, 'guestbook/upload_image.html', {'uploaded_file_url' : uploaded_file_url})
-    return render(request, 'guestbook/upload_image.html')
+    if request.method == 'POST':
+        form = UploadImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('about')
+    else:
+        form = UploadImageForm()
+    return render(request, 'guestbook/upload_image.html', {'form': form} )

@@ -12,9 +12,6 @@ def index(request):
 def login(request):
     return render(request, 'guestbook/login.html')
 
-def upload(request):
-    return render(request, 'guestbook/upload.html')
-
 def about(request):
     return render(request, 'guestbook/about.html')
 
@@ -27,12 +24,12 @@ def about(request):
 #         return render(request, 'guestbook/upload_image.html', {'uploaded_file_url' : uploaded_file_url})
 #     return render(request, 'guestbook/upload_image.html')
 
-def img_upload(request):
+def upload(request):
     if request.method == 'POST':
         form = UploadImageForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('about')
+            return redirect('upload')
     else:
         form = UploadImageForm()
     return render(request, 'guestbook/upload_image.html', {'form': form} )

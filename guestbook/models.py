@@ -20,7 +20,18 @@ class EXIF_data(models.Model):
     date_modified   = models.DateTimeField(null=True)
     resolution      = models.CharField(max_length=10, null=True)
 
+PHOTO_TYPE = (
+    ('portrait','PORTRAIT'),
+    ('landscape', 'LANDSCAPE'),
+    ('candid','CANDID'),
+    ('story','STORY'),
+    ('wild','WILDLIFE'),
+    ('selfie', 'SELFIE'),
+)
+
 class Image(models.Model):
+    title = models.CharField(max_length=30, default='')
     description = models.CharField(max_length=255, blank=True, default='')
     document     = models.ImageField(upload_to='images/', null=True)
+    photo_type = models.CharField(max_length=10, choices=PHOTO_TYPE, default='portrait')
     uploaded_at = models.DateTimeField(default=now, blank=True)

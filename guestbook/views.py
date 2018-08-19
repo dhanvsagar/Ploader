@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .forms import UploadImageForm
@@ -33,3 +34,8 @@ def upload(request):
     else:
         form = UploadImageForm()
     return render(request, 'guestbook/upload_image.html', {'form': form} )
+
+def gallery(request):
+    path = settings.MEDIA_ROOT
+    img_list = os.listdir(path)
+    return render('index.html', {'images':img_list})

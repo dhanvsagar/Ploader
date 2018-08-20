@@ -8,9 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'guestbook/vendor/bootstrap/css/bootstrap.min.css' %}">
 </head>
 <body>
-<h3>Gallery</h3>
-{% for image in images %}
-<img src='/static/{{image}}' />
+<h3>Gallery - Index</h3>
+{% for i in img_list %}
+<li>{{ i.description}}</li>
 {% endfor %}
 </body>
 </html>

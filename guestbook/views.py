@@ -4,11 +4,10 @@ from django.http import HttpResponseRedirect
 from .forms import UploadImageForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from .models import Image
 
 def handle_upload(image_file):
     pass
-def index(request):
-    return render(request, 'guestbook/index.html')
 
 def login(request):
     return render(request, 'guestbook/login.html')
@@ -35,7 +34,7 @@ def upload(request):
         form = UploadImageForm()
     return render(request, 'guestbook/upload_image.html', {'form': form} )
 
-def gallery(request):
-    path = settings.MEDIA_ROOT
-    img_list = os.listdir(path)
-    return render('index.html', {'images':img_list})
+def index(request):
+    img_list = Image.objects.all()
+    img_names = {'img_list':  img_list}
+    return render(request, 'guestbook/index.html', img_names)

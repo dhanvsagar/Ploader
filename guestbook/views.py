@@ -37,4 +37,4 @@ def upload(request):
 def index(request):
     img_list = Image.objects.all()
     img_names = {'img_list':  img_list}
-    return render(request, 'guestbook/index2.html', img_names)
+    return render(request, 'guestbook/index.html', img_names)

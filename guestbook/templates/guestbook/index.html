@@ -9,8 +9,23 @@
 </head>
 <body>
 <h3>Gallery - Index</h3>
-{% for i in img_list %}
-<li>{{ i.description}}</li>
-{% endfor %}
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Description</th>
+		<th>Category</th>
+		<th>Uploaded At</th>
+
+	</tr>
+	{% for i in img_list %}
+	<tr>
+		<td>{{ i.title}}</td>
+		<td>{{ i.description}}</td>
+		<td>{{ i.photo_type}}</td>
+		<td>{{ i.uploaded_at}}</td>
+	</tr>
+
+	{% endfor %}
+</table>
 </body>
 </html>

@@ -9,12 +9,16 @@
 </head>
 <body>
 <h3>Gallery - Index</h3>
+<p>
+<h7><a href="/guestbook/upload" >Add New Image</a></h7>
+</p>
 <table>
 	<tr>
 		<th>Title</th>
 		<th>Description</th>
 		<th>Category</th>
 		<th>Uploaded At</th>
+        <th>URL</th>
 
 	</tr>
 	{% for i in img_list %}
@@ -23,6 +27,7 @@
 		<td>{{ i.description}}</td>
 		<td>{{ i.photo_type}}</td>
 		<td>{{ i.uploaded_at}}</td>
+        <td><a href=" {{ i.document}}">{{ i.document}}</a></td>
 	</tr>
 
 	{% endfor %}

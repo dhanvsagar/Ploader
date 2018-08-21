@@ -5,12 +5,26 @@ from .forms import UploadImageForm
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from .models import Image
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request,username = username, password = password)
+        if user is not None:
+            login(request, user)
+            redirect('')
+    else:
+        form = AuthenticationForm
+        return render(request,'guestbook/login.html', {'form': form})
 
 def handle_upload(image_file):
     pass
 
-def login(request):
-    return render(request, 'guestbook/login.html')
+# def login(request):
+#     return render(request, 'guestbook/login.html')
 
 def about(request):
     return render(request, 'guestbook/about.html')
